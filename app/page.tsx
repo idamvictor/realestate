@@ -1,5 +1,28 @@
+import AboutUs from "@/components/AboutUs";
+import Explore from "@/components/Explore";
+import ExploreArea from "@/components/ExploreArea";
+import FeaturedPlaces from "@/components/FeaturedPlaces";
+import FeaturesSection from "@/components/FeaturesSection";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import RightSellingOption from "@/components/RightSellingOption";
 import { Button } from "@/components/ui/button";
+import UserReviews from "@/components/UserReviews";
+import WelcomeSection from "@/components/WelcomeSection";
 
 export default function Home() {
-  return <Button className="text-red-500">Hello</Button>;
+  return (
+    <main className="overflow-x-hidden min-h-[100vh] pb-4 bg-estate-grey-6">
+      <Navbar />
+      <WelcomeSection />
+      <FeaturesSection />
+      <AboutUs />
+      <Explore />
+      <FeaturedPlaces />
+      <ExploreArea />
+      <UserReviews />
+      <RightSellingOption />
+      <Footer />
+    </main>
+  );
 }

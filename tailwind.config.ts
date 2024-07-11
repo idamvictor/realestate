@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -52,11 +52,23 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "estate-orange-1": "#EB6753",
+        "estate-grey-1": "#E8E8E8",
+        "estate-grey-2": "#707070",
+        "estate-grey-3": "#666666",
+        "estate-grey-4": "#F0F2F3",
+        "estate-grey-5": "#E6E4E0",
+        "estate-yellow-1": "#F1AF00",
+        "estate-black-1": "#060606",
+        "estate-grey-6": "#FAFAFA",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "estate-border-radius": "10px",
+        "estate-border-radius-2": "20px",
+        "estate-border-radius-3": "5px",
       },
       keyframes: {
         "accordion-down": {
@@ -72,9 +84,22 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      boxShadow: {
+        "navbar-shadow": "0px 4px 4px #00000005",
+        "search-shadow": "0px 0px 10px #00000029",
+        "features-shadow": "0px 0px 10px #0000001A",
+      },
+      padding: {
+        "mobile-landing-page-padding-x": "0 20px 0 20px",
+        "desktop-landing-page-padding-x": "0 40px 0 40px",
+      },
+      backgroundImage: {
+        "round-circle":
+          "linear-gradient(181deg, rgba(236,161,150,1) 32%, rgba(255,255,255,1) 95%)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
