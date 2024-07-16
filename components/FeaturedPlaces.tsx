@@ -3,6 +3,7 @@ import SectionWrapper from "./SectionWrapper";
 import SectionHeader from "./SectionHeader";
 import Listings from "./Listings";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 const FeaturedPlaces = () => {
   return (
@@ -15,7 +16,9 @@ const FeaturedPlaces = () => {
       <div className="mt-5">
         <Listings />
         <div className="w-full flex justify-end">
-          <Button>See All</Button>
+          <Button>
+            <Link href="/listings">See All</Link>
+          </Button>
         </div>
       </div>
     </SectionWrapper>

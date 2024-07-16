@@ -69,6 +69,7 @@ const config = {
         "estate-border-radius": "10px",
         "estate-border-radius-2": "20px",
         "estate-border-radius-3": "5px",
+        "estate-border-radius-4": "26px",
       },
       keyframes: {
         "accordion-down": {
