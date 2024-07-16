@@ -44,10 +44,10 @@ const UserReviews = () => {
         <CarouselSize
           count="1"
           items={[
-            <UserReview />,
-            <UserReview />,
-            <UserReview />,
-            <UserReview />,
+            <UserReview key={1} />,
+            <UserReview key={2} />,
+            <UserReview key={3} />,
+            <UserReview key={4} />,
           ]}
         />
       </div>

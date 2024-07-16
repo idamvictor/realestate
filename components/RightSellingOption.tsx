@@ -17,7 +17,7 @@ const RightSellingOption = () => {
       <div className="absolute lg:mx-5 top-0 left-0 bg-estate-black-1 grid grid-cols-5 h-[492px] text-white mt-[59px] lg:mt-[119px] lg:rounded-estate-border-radius-2 pl-5 lg:pl-[33px]  pt-[40px] pb-[67px]">
         <div className="col-span-5 lg:col-span-2">
           <p className="font-bold text-[20px] lg:text-[32px]">
-            Let's find the right{" "}
+            Let&#39;s find the right{" "}
             <span className="text-estate-orange-1">selling option</span> for you
           </p>
           <p className="text-sm mt-[10px]">

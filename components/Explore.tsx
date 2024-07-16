@@ -20,31 +20,37 @@ const Explore = () => {
           count="5"
           items={[
             <Category
+              key={1}
               category="Houses"
               description="144 Available"
               icon="/icons/house.svg"
             />,
             <Category
+              key={2}
               category="Houses"
               description="144 Available"
               icon="/icons/house.svg"
             />,
             <Category
+              key={3}
               category="Houses"
               description="144 Available"
               icon="/icons/house.svg"
             />,
             <Category
+              key={4}
               category="Houses"
               description="144 Available"
               icon="/icons/house.svg"
             />,
             <Category
+              key={5}
               category="Houses"
               description="144 Available"
               icon="/icons/house.svg"
             />,
             <Category
+              key={6}
               category="Houses"
               description="144 Available"
               icon="/icons/house.svg"

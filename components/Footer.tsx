@@ -1,13 +1,12 @@
 import React from "react";
 import Logo from "./Logo";
-import SectionWrapper from "./SectionWrapper";
 import IconAvatar from "./IconAvatar";
 import FooterLinkItem from "./FooterLinkItem";
 
 const Footer = () => {
   return (
-    <div className="grid grid-cols-5 mt-[64px] md:mt-[130px] bg-white p-10 gap-5">
-      <div className="col-span-5 md:col-span-2 flex flex-col">
+    <div className="grid grid-cols-6 mt-[64px] md:mt-[130px] bg-white p-10 gap-5">
+      <div className="col-span-6 md:col-span-2 flex flex-col">
         <Logo />
         <p className="text-sm mt-[10px]">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
@@ -22,7 +21,7 @@ const Footer = () => {
           <IconAvatar image="/icons/facebook.svg" bg="estate-orange-1" />
         </div>
       </div>
-      <div className="col-span-5 md:col-span-3 grid grid-cols-2 lg:grid-cols-4 gap-5 mt-10 md:mt-[unset]">
+      <div className="col-span-6 md:col-span-4 md:col-start-4 grid grid-cols-2 lg:grid-cols-4 gap-5 mt-10 md:mt-[unset]">
         <div className="col-span-1">
           <p className="font-semibold">Useful Links</p>
           <ul className="space-y-5 mt-5">
