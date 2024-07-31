@@ -1,4 +1,4 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import BlurContainer from "./BlurContainer";
 import Text from "./Text";
 import QuickAction from "./QuickAction";

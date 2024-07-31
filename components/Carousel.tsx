@@ -14,10 +14,12 @@ export function CarouselSize({
   items,
   count,
   className,
+  showControl,
 }: {
   items: React.ReactNode[];
   count: string;
   className?: string;
+  showControl: boolean;
 }) {
   const carouselItemClass = `basis-1/${count} lg:basis-1/${count}`;
   return (
@@ -36,10 +38,12 @@ export function CarouselSize({
           );
         })}
       </CarouselContent>
-      <div className="flex items-center gap-5 w-full justify-center mt-5">
-        <CarouselPrevious className="-bottom-[70px] left-[48%] -translate-x-[100%] border" />
-        <CarouselNext className="-bottom-[70px] right-[50%] translate-x-[100%] border" />
-      </div>
+      {showControl ? (
+        <div className="flex items-center gap-5 w-full justify-center mt-5">
+          <CarouselPrevious className="-bottom-[70px] left-[48%] -translate-x-[100%] border" />
+          <CarouselNext className="-bottom-[70px] right-[50%] translate-x-[100%] border" />
+        </div>
+      ) : null}
     </Carousel>
   );
 }

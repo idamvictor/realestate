@@ -6,6 +6,7 @@ const Listings = () => {
   return (
     <div className="w-full flex justify-center mt-5">
       <CarouselSize
+        showControl={true}
         className=""
         count="3"
         items={[

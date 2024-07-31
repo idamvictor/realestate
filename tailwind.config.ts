@@ -58,9 +58,12 @@ const config = {
         "estate-grey-3": "#666666",
         "estate-grey-4": "#F0F2F3",
         "estate-grey-5": "#E6E4E0",
+        "estate-grey-6": "#FAFAFA",
+        "estate-grey-7": "#e4e4e4",
+        "estate-grey-8": "#AFAFAF",
         "estate-yellow-1": "#F1AF00",
         "estate-black-1": "#060606",
-        "estate-grey-6": "#FAFAFA",
+        "estate-green-1": "#07AE44",
       },
       borderRadius: {
         lg: "var(--radius)",

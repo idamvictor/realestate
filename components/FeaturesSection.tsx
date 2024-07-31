@@ -1,11 +1,26 @@
-import React from "react";
+"use client";
+
+import React, { forwardRef, HTMLAttributes } from "react";
 import Feature from "./Feature";
 import SectionWrapper from "./SectionWrapper";
 import Blur from "./Blur";
+import { useInView } from "react-intersection-observer";
+import { cn } from "@/lib/utils";
 
 const FeaturesSection = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <div className="relative hidden lg:block">
+    <div
+      ref={ref}
+      className={cn(
+        "relative hidden lg:block opacity-0 translate-y-10 transition-all duration-1000",
+        inView ? "opacity-100 translate-y-0" : ""
+      )}
+    >
       <Blur className="-top-10" />
       <SectionWrapper className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 relative z-99 -top-5">
         <Feature
@@ -32,5 +47,4 @@ const FeaturesSection = () => {
     </div>
   );
 };
-
 export default FeaturesSection;

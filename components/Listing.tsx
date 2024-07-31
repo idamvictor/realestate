@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import VerticalLine from "./VerticalLine";
 import Icon from "./Icon";
+import { useRouter } from "next/navigation";
 
 const Listing = ({
   name,
@@ -13,6 +14,7 @@ const Listing = ({
   cars,
   size,
   toilet,
+  className,
 }: {
   name: string;
   image: string;
@@ -22,18 +24,25 @@ const Listing = ({
   size: string;
   location: string;
   toilet: number;
+  className?: string;
 }) => {
   const imageBoxClass = `w-full h-[209px] bg-[url('/images/${image}')] bg-center bg-cover rounded-estate-border-radius-2 relative`;
-
+  const router = useRouter();
   return (
-    <div className="bg-white shadow-features-shadow rounded-estate-border-radius-2 flex flex-col relative p-[10px] w-[311px] md:w-[411px] text-xs md:text-sm">
+    <div
+      onClick={() => router.push("/listings/1")}
+      className={cn(
+        "bg-white shadow-features-shadow rounded-estate-border-radius-2 flex flex-col relative p-[10px] text-xs md:text-sm",
+        className
+      )}
+    >
       <div className={imageBoxClass}>
         <div className="absolute top-5 right-5 bg-black/30 backdrop-blur-[2px] p-1 rounded-estate-border-radius-3 text-white text-xs font-medium">
           Bungalow
         </div>
       </div>
       <p className="font-semibold mt-[10px]">{name}</p>
-      <div className="flex items-center gap-2 md:gap-5 mt-2">
+      <div className="flex items-center gap-2 md:gap-5 mt-2 flex-wrap">
         <p className="font-semibold text-sm">{price}</p>
         <VerticalLine height={23} color="black" />
         <Icon image="/icons/bed.svg" text={String(beds)} />

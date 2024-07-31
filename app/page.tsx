@@ -13,7 +13,7 @@ import WelcomeSection from "@/components/WelcomeSection";
 export default function Home() {
   return (
     <main className="overflow-x-hidden min-h-[100vh] pb-4 bg-estate-grey-6">
-      <Navbar />
+      <Navbar activeLink="home" />
       <WelcomeSection />
       <FeaturesSection />
       <AboutUs />

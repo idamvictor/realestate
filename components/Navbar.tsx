@@ -8,7 +8,7 @@ import Logo from "./Logo";
 import Image from "next/image";
 import NavbarLinks from "./NavbarLinks";
 
-const Navbar = () => {
+const Navbar = ({ activeLink }: { activeLink: string }) => {
   const [showMobilenav, setShowMobileNav] = useState(false);
 
   const onClickShowMobileNav = () => {
@@ -16,11 +16,14 @@ const Navbar = () => {
   };
 
   return (
-    <SectionWrapper className="h-[72px] lg:h-[80px] flex items-center shadow-navbar-shadow z-50 bg-white sticky top-0">
+    <div className="h-[72px] md:h-[80px] flex items-center shadow-navbar-shadow z-[55] bg-white sticky top-0 px-5 md:px-10">
       <div className="flex items-center justify-between w-full">
         <Logo />
         <div className="flex items-center lg:space-x-10 justify-between">
-          <NavbarLinks className="hidden lg:flex justify-between items-center lg:space-x-10" />
+          <NavbarLinks
+            activeLink={activeLink}
+            className="hidden lg:flex justify-between items-center lg:space-x-10"
+          />
           <div className="space-x-5 flex">
             <Button className="flex items-center space-x-[10px] bg-black">
               <Image
@@ -48,10 +51,13 @@ const Navbar = () => {
       </div>
       {showMobilenav ? (
         <div className="lg:hidden z-50 bg-white absolute top-[72px] right-0 w-[256px] pt-5 pb-10 rounded-bl-estate-border-radius rounded-br-estate-border-radius border border-estate-grey-1 shadow-navbar-shadow">
-          <NavbarLinks className="lg:hidden flex flex-col items-end pr-5" />
+          <NavbarLinks
+            activeLink={activeLink}
+            className="lg:hidden flex flex-col items-end pr-5"
+          />
         </div>
       ) : null}
-    </SectionWrapper>
+    </div>
   );
 };
 
