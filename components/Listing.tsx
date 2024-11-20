@@ -28,7 +28,7 @@ const Listing = ({
 }) => {
   // const imageBoxClass = `w-full h-[209px] bg-[url('/images/${image}')] bg-center bg-cover rounded-estate-border-radius-2 relative`;
   console.log(image);
-  const imageBoxClass = `w-full h-[209px] bg-[url('https://realestate.surdonline.com/assets/images/properties/properties1.png')] bg-center bg-cover rounded-estate-border-radius-2 relative`;
+  const imageBoxClass = `w-full h-[209px]  bg-center bg-cover rounded-estate-border-radius-2 relative`;
   const router = useRouter();
   return (
     <div
@@ -39,6 +39,7 @@ const Listing = ({
       )}
     >
       <div className={imageBoxClass}>
+        <Image src={image} alt="image" fill />
         <div className="absolute top-5 right-5 bg-black/30 backdrop-blur-[2px] p-1 rounded-estate-border-radius-3 text-white text-xs font-medium">
           Bungalow
         </div>
