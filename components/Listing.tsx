@@ -26,7 +26,9 @@ const Listing = ({
   toilet: number;
   className?: string;
 }) => {
-  const imageBoxClass = `w-full h-[209px] bg-[url('/images/${image}')] bg-center bg-cover rounded-estate-border-radius-2 relative`;
+  // const imageBoxClass = `w-full h-[209px] bg-[url('/images/${image}')] bg-center bg-cover rounded-estate-border-radius-2 relative`;
+  console.log(image);
+  const imageBoxClass = `w-full h-[209px] bg-[url('https://realestate.surdonline.com/assets/images/properties/properties1.png')] bg-center bg-cover rounded-estate-border-radius-2 relative`;
   const router = useRouter();
   return (
     <div
