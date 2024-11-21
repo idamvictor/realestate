@@ -4,7 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 interface Listing {
   title: string;
   city: string;
-  id: Key | null | undefined;
+  id: number | null | undefined;
   car_packs: number;
   name: string;
   image: string;
