@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface Listing {
   title: string;
+  slug: string;
   city: string;
   id: number | null | undefined;
   car_packs: number;
