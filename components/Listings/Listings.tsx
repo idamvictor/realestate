@@ -285,7 +285,7 @@ const Listings: React.FC = () => {
             name={listing.title}
             price={listing.price}
             size="2,547sqft" // Assuming size isn't provided, you can update this
-            toilet={listing.toilet}
+            toilet={listing.toilets}
             className="w-full md:w-full col-span-1"
           />
         ))}

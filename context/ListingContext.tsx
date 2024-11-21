@@ -13,7 +13,7 @@ interface Listing {
   beds: number;
   size: string;
   location: string;
-  toilet: number;
+  toilets: number;
 }
 
 interface ListingContextProps {

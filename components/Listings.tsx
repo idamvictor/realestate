@@ -262,16 +262,16 @@ import Listing from "./Listing";
 import { CarouselSize } from "./Carousel";
 import { useListings } from "@/context/ListingContext";
 
-type ListingType = {
-  id: string;
-  beds: number;
-  car_packs: number;
-  image: string;
-  city: string;
-  title: string;
-  price: string;
-  toilets: number;
-};
+// type ListingType = {
+//   id: string;
+//   beds: number;
+//   car_packs: number;
+//   image: string;
+//   city: string;
+//   title: string;
+//   price: string;
+//   toilets: number;
+// };
 
 const Listings = () => {
   const { listings, loading, error } = useListings();
