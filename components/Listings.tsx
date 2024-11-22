@@ -6,8 +6,6 @@ import { useListings } from "@/context/ListingContext";
 const Listings = () => {
   const { listings, loading, error } = useListings();
 
-  console.log(listings);
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -17,9 +15,9 @@ const Listings = () => {
         showControl={true}
         className=""
         count="3"
-        items={listings.map((listing) => (
+        items={listings.map((listing, index) => (
           <Listing
-            key={listing.id}
+            key={index}
             slug={listing.slug}
             beds={listing.beds}
             cars={listing.car_packs}

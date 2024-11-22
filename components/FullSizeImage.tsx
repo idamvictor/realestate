@@ -8,7 +8,12 @@ const FullSizeImage = ({
   imgSrc: string;
   className?: string;
 }) => {
-  return <div className={cn("bg-center bg-cover", imgSrc, className)} />;
+  return (
+    <div
+      className={cn("bg-center bg-cover", className)}
+      style={{ backgroundImage: `url(${imgSrc})` }}
+    />
+  );
 };
 
 export default FullSizeImage;

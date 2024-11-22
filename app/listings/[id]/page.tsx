@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import VerticalLine from "@/components/VerticalLine";
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import HouseGallery from "@/components/HouseGallery";
 import ListingUserReview from "@/components/ListingUserReview";
@@ -31,24 +31,100 @@ import SectionHeader from "@/components/SectionHeader";
 import Listings from "@/components/Listings";
 import Link from "next/link";
 
+interface PropertyDetails {
+  title: string;
+  slug: string;
+  type: string;
+  sale_status: string;
+  address: string;
+  tag: string | null;
+  city: string;
+  distress_sale: number;
+  price: string;
+  short_description: string;
+  description: string;
+  amenities: string[];
+  image: string;
+  images: string[];
+  featured: number;
+  tags: string | null;
+  beds: string;
+  spf: string | null;
+  discount: string;
+  toilets: string;
+  car_packs: string;
+}
+
+interface ApiResponse {
+  data: PropertyDetails;
+}
+
 const CheckMarkWithDetail = ({ text }: { text: string }) => {
   return <Icon image="/icons/double-check.svg" text={text} />;
 };
 
-const ListingDetailPage = () => {
+const ListingDetailPage = ({
+  params,
+}: {
+  params: {
+    id: string;
+  };
+}) => {
+  const { id } = params;
+
   const [houseInspectionType, setHouseInspectionType] = useState("in-person");
+  const [details, setDetail] = useState<PropertyDetails | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // console.log(details?.image);
+
+  const {
+    title = "Untitled",
+    image,
+    images,
+    price = "N/A",
+    description = "No description available",
+    amenities = [],
+  } = details || {};
+
+  // console.log(image);
+
+  useEffect(() => {
+    const getProductDetails = async () => {
+      try {
+        setIsLoading(true);
+        const res = await fetch(
+          `https://realestate.surdonline.com/api/v1/listing/${id}`
+        );
+        const data: ApiResponse = await res.json(); // Assume the API returns a single object
+        setDetail(data.data);
+      } catch (error) {
+        console.error("Failed to fetch data", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getProductDetails();
+  }, [id]);
 
   return (
     <div>
       <Navbar activeLink="listings" />
       <div className="md:p-10 md:py-5 md:pb-0">
-        <FullSizeImage
-          className="w-full h-[257px] md:h-[300px] md:rounded-estate-border-radius-2 lg:h-[411px]"
-          imgSrc="bg-[url('/images/horizontal-house.jpg')]"
-        />
+        {isLoading ? (
+          <p>Loading image</p>
+        ) : (
+          <FullSizeImage
+            className="w-full h-[257px] md:h-[300px] md:rounded-estate-border-radius-2 lg:h-[411px]"
+            // imgSrc="bg-[url('/images/horizontal-house.jpg')]"
+            imgSrc={`${image}`}
+          />
+        )}
       </div>
       <div className="p-5 pb-0 pt-0 mt-[10px] md:px-10 md:pt-0">
         <HouseGallery
+          images={images || []}
           showControl={true}
           className="w-[111px] h-[56px] lg:w-[249px] lg:h-[125px] rounded-estate-border-radius"
         />
@@ -56,7 +132,8 @@ const ListingDetailPage = () => {
         <div className="mt-5 flex justify-between">
           <div className="flex flex-col gap-5 justify-between">
             <Heading2 className="text-2xl font-bold md:text-[32px]">
-              Major General Realty
+              {/* Major General Realty */}
+              {title}
             </Heading2>
             <div className="flex flex-wrap items-center gap-5 mt-[20px]">
               <ParagraphRegular className="text-sm">
@@ -238,12 +315,12 @@ const ListingDetailPage = () => {
             </SubSectionContainer>
             <SubSectionContainer>
               <Header4>Video</Header4>
-              <div className="md:block mt-5 rounded-estate-border-radius-2">
+              {/* <div className="md:block mt-5 rounded-estate-border-radius-2">
                 <ReactPlayer
                   width={"100%"}
                   url="https://www.youtube.com/watch?v=LXb3EKWsInQ"
                 />
-              </div>
+              </div> */}
             </SubSectionContainer>
 
             <SubSectionContainer>
