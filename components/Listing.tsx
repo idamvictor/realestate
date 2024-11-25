@@ -15,6 +15,7 @@ const Listing = ({
   cars,
   size,
   toilet,
+  type,
   className,
 }: {
   name: string;
@@ -26,6 +27,7 @@ const Listing = ({
   size: string;
   location: string;
   toilet: number;
+  type: string;
   className?: string;
 }) => {
   const imageBoxClass = `w-full h-[209px]  bg-center bg-cover rounded-estate-border-radius-2 relative`;
@@ -41,7 +43,7 @@ const Listing = ({
       <div className={imageBoxClass}>
         <Image src={image} alt="image" fill />
         <div className="absolute top-5 right-5 bg-black/30 backdrop-blur-[2px] p-1 rounded-estate-border-radius-3 text-white text-xs font-medium">
-          Bungalow
+          {type || "Bungalow"}
         </div>
       </div>
       <p className="font-semibold mt-[10px]">{name}</p>
