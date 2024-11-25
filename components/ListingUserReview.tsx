@@ -5,6 +5,8 @@ import HouseGallery from "./HouseGallery";
 import Icon from "./Icon";
 import Ratings from "./Ratings";
 
+// images={[""]}
+
 const ListingUserReview = () => {
   return (
     <div>

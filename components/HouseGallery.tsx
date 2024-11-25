@@ -3,21 +3,26 @@ import React from "react";
 import FullSizeImage from "./FullSizeImage";
 import { CarouselSize } from "./Carousel";
 
+type HouseGalleryProps = {
+  className: string;
+  showControl: boolean;
+  images: string[] | undefined;
+};
+
 const HouseGallery = ({
   className,
   showControl,
   images,
-}: {
-  className: string;
-  showControl: boolean;
-  images: string[] | undefined;
-}) => {
+}: HouseGalleryProps) => {
+  // Default to an empty array if undefined
+  const normalizedImages = images || [];
+
   return (
     <CarouselSize
       showControl={showControl}
       count={(images?.length || 1).toString()}
       items={
-        images?.map((image, index) => (
+        normalizedImages?.map((image, index) => (
           <FullSizeImage key={index} imgSrc={image} className={cn(className)} />
         )) || []
       }
