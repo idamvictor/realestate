@@ -28,6 +28,7 @@ const ListingUserReview = () => {
       <div className="flex items-center gap-[10px] mt-[32px] md:mt-10">
         <HouseGallery
           images={[]}
+          isLoading={false}
           showControl={false}
           className="w-[111px] h-[90px] rounded-estate-border-radius"
         />

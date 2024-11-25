@@ -33,6 +33,7 @@ const Explore = () => {
         </p>
         <div className="w-full flex justify-center mt-5">
           <CarouselSize
+            isLoading={false}
             showControl={true}
             count="5"
             items={[

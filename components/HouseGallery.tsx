@@ -7,23 +7,31 @@ type HouseGalleryProps = {
   className: string;
   showControl: boolean;
   images: string[] | undefined;
+  isLoading: boolean;
 };
 
 const HouseGallery = ({
   className,
   showControl,
   images,
+  isLoading,
 }: HouseGalleryProps) => {
   // Default to an empty array if undefined
   const normalizedImages = images || [];
 
   return (
     <CarouselSize
+      isLoading={isLoading}
       showControl={showControl}
       count={(images?.length || 1).toString()}
       items={
         normalizedImages?.map((image, index) => (
-          <FullSizeImage key={index} imgSrc={image} className={cn(className)} />
+          <FullSizeImage
+            key={index}
+            imgSrc={image}
+            className={cn(className)}
+            isLoading={isLoading}
+          />
         )) || []
       }
     />

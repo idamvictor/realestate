@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import VerticalLine from "@/components/VerticalLine";
 import { cn } from "@/lib/utils";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import HouseGallery from "@/components/HouseGallery";
 import ListingUserReview from "@/components/ListingUserReview";
@@ -30,6 +30,7 @@ import ReviewForm from "@/components/ReviewForm";
 import SectionHeader from "@/components/SectionHeader";
 import Listings from "@/components/Listings";
 import Link from "next/link";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface PropertyDetails {
   title: string;
@@ -74,12 +75,12 @@ const ListingDetailPage = ({
 
   const [houseInspectionType, setHouseInspectionType] = useState("in-person");
   const [details, setDetail] = useState<PropertyDetails | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // console.log(details?.image);
 
   const {
-    title = "Untitled",
+    title,
     image,
     images,
     price = "N/A",
@@ -113,12 +114,13 @@ const ListingDetailPage = ({
       <Navbar activeLink="listings" />
       <div className="md:p-10 md:py-5 md:pb-0">
         {isLoading ? (
-          <p>Loading image</p>
+          <Skeleton className="w-full h-[410px]" />
         ) : (
           <FullSizeImage
             className="w-full h-[257px] md:h-[300px] md:rounded-estate-border-radius-2 lg:h-[411px]"
             // imgSrc="bg-[url('/images/horizontal-house.jpg')]"
             imgSrc={`${image}`}
+            isLoading={isLoading}
           />
         )}
       </div>
@@ -127,14 +129,20 @@ const ListingDetailPage = ({
           images={images || []}
           showControl={true}
           className="w-[111px] h-[56px] lg:w-[249px] lg:h-[125px] rounded-estate-border-radius"
+          isLoading={isLoading}
         />
 
         <div className="mt-5 flex justify-between">
           <div className="flex flex-col gap-5 justify-between">
-            <Heading2 className="text-2xl font-bold md:text-[32px]">
-              {/* Major General Realty */}
-              {title}
-            </Heading2>
+            {isLoading ? (
+              <Skeleton className="h-10 w-[90%]" />
+            ) : (
+              <Heading2 className="text-2xl font-bold md:text-[32px]">
+                {/* Major General Realty */}
+                {title}
+              </Heading2>
+            )}
+
             <div className="flex flex-wrap items-center gap-5 mt-[20px]">
               <ParagraphRegular className="text-sm">
                 Wuse Phase 1, Abuja

@@ -74,7 +74,13 @@
 // };
 
 "use client";
-import React, { createContext, useContext, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface Listing {
   title: string;
@@ -100,6 +106,7 @@ interface ListingContextProps {
   setListings: React.Dispatch<React.SetStateAction<Listing[]>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setError: React.Dispatch<React.SetStateAction<string | null>>;
+  fetchWithParams: (queryParams?: string) => Promise<void>;
 }
 
 const ListingContext = createContext<ListingContextProps | undefined>(
@@ -121,9 +128,44 @@ export const ListingProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  const BASE_API_URL = "https://realestate.surdonline.com/api/v1/listings";
+
+  const fetchWithParams = useCallback(
+    async (queryParams: string = "") => {
+      setLoading(true);
+      setError(null);
+      try {
+        const url = `${BASE_API_URL}${queryParams ? `?${queryParams}` : ""}`;
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const jsonData = await response.json();
+        setListings(jsonData.data); // Assuming API returns data in `data`
+      } catch (err: any) {
+        setError(err.message || "An error occurred");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [setListings, setLoading, setError]
+  );
+
+  useEffect(() => {
+    fetchWithParams();
+  }, [fetchWithParams]);
+
   return (
     <ListingContext.Provider
-      value={{ listings, loading, error, setListings, setLoading, setError }}
+      value={{
+        listings,
+        loading,
+        error,
+        setListings,
+        setLoading,
+        setError,
+        fetchWithParams,
+      }}
     >
       {children}
     </ListingContext.Provider>

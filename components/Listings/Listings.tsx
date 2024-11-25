@@ -7,13 +7,12 @@ import Filter from "./Filter";
 import { cn } from "@/lib/utils";
 import { useFilterContext } from "@/context/index";
 import { useListings } from "@/context/ListingContext";
-import useFetchWithParams from "@/services/useFIlterApi";
+// import useFetchWithParams from "@/services/useFIlterApi";
 
 const Listings: React.FC = () => {
   const { openFilter } = useFilterContext();
 
-  const { listings, loading, error } = useListings();
-  const { fetchWithParams } = useFetchWithParams();
+  const { listings, loading, error, fetchWithParams } = useListings();
 
   useEffect(() => {
     // Initial fetch

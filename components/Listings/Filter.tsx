@@ -17,10 +17,12 @@ import RadioSelect from "./RadioSelect";
 import CheckboxGroup from "./CheckBoxGroup";
 import useSearchParamHandler from "@/hooks/useSearchParamsHandler";
 import { useSearchParams } from "next/navigation";
-import useFetchWithParams from "@/services/useFIlterApi";
+// import useFetchWithParams from "@/services/useFIlterApi";
+import { useListings } from "@/context/ListingContext";
 
 const Filter = () => {
   // const { toggleFilter } = useFilterContext();
+  const { fetchWithParams, loading } = useListings();
 
   const searchParams = useSearchParams();
   const paramsObject = Object.fromEntries(searchParams.entries());
@@ -29,17 +31,22 @@ const Filter = () => {
 
   const newType = encodeURIComponent(type);
 
+  const length = Object.values(paramsObject).length;
+
   const queryParams = `type=${newType}&city=${cities}&min_price=${min_price}&max_price=${max_price}&bedrooms=&toilets=&keyword=&sort_by=`;
 
-  const { fetchWithParams } = useFetchWithParams();
-
   const handleSubmit = () => {
+    if (length === 0) return;
+
     fetchWithParams(queryParams);
   };
 
   const clearAllState = () => {
     // Update the URL without query parameters
     window.history.pushState(null, "", window.location.pathname);
+
+    //re-fetch the initial listting when we clear the filter
+    fetchWithParams();
   };
 
   return (
@@ -88,14 +95,15 @@ const Filter = () => {
       <FilterSectionTitle className="mt-5 ">Other Features</FilterSectionTitle>
       <OtherFeatures />
 
-      <Button onClick={handleSubmit} className="w-full mt-5">
-        Search
+      <Button onClick={handleSubmit} disabled={loading} className="w-full mt-5">
+        {loading ? "Filtering" : "Search"}
       </Button>
 
       <Button
         variant="transparent"
         className="underline p-0 mt-5"
         onClick={clearAllState}
+        disabled={loading}
       >
         Clear filter
       </Button>

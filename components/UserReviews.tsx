@@ -69,6 +69,7 @@ const UserReviews = () => {
       </div>
       <div className="md:hidden">
         <CarouselSize
+          isLoading
           showControl={true}
           count="1"
           items={[
