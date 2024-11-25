@@ -146,6 +146,9 @@ const AgentsPage = () => {
                     price="$50,000"
                     size="2,547sqft"
                     toilet={2}
+                    type="bungalow"
+                    className="w-full md:w-full col-span-1"
+                    slug="slugname"
                   />
                   <Listing
                     key={1}
@@ -157,6 +160,9 @@ const AgentsPage = () => {
                     price="$50,000"
                     size="2,547sqft"
                     toilet={2}
+                    type="bungalow"
+                    className="w-full md:w-full col-span-1"
+                    slug="slugname"
                   />
                   <Listing
                     key={1}
@@ -168,6 +174,9 @@ const AgentsPage = () => {
                     price="$50,000"
                     size="2,547sqft"
                     toilet={2}
+                    type="bungalow"
+                    className="w-full md:w-full col-span-1"
+                    slug="slugname"
                   />
                   <Listing
                     key={1}
@@ -179,6 +188,9 @@ const AgentsPage = () => {
                     price="$50,000"
                     size="2,547sqft"
                     toilet={2}
+                    type="bungalow"
+                    className="w-full md:w-full col-span-1"
+                    slug="slugname"
                   />
                 </div>
                 <ButtonWithIcon
