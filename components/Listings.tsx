@@ -12,6 +12,7 @@ const Listings = () => {
   return (
     <div className="w-full flex justify-center mt-5">
       <CarouselSize
+        isLoading
         showControl={true}
         className=""
         count="3"
