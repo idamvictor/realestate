@@ -27,6 +27,7 @@ const Listings = () => {
             price={listing.price}
             size="2,547sqft"
             toilet={listing.toilets}
+            type={listing.type}
           />
         ))}
       />
