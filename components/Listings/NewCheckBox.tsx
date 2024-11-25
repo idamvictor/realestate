@@ -12,7 +12,7 @@ const NewCheckbox: React.FC<CheckboxProps> = ({ id, checked, onChange }) => (
     id={id}
     checked={checked}
     onChange={onChange}
-    className="checkbox-class"
+    className="appearance-none w-4 h-4 checked:bg-black checked:before:content-['✓'] checked:before:text-white border-black border-2 rounded cursor-pointer flex items-center justify-center"
   />
 );
 
