@@ -13,7 +13,7 @@ const Icon = ({
 }) => {
   return (
     <div className={cn("flex items-center gap-[6px]", className)}>
-      <Image src={image} width={20} height={16} alt="bed" />
+      <Image src={image} width={20} height={20} alt="bed" />
       {text}
     </div>
   );

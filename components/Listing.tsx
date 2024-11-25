@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 const Listing = ({
   name,
+  slug,
   image,
   location,
   price,
@@ -14,9 +15,11 @@ const Listing = ({
   cars,
   size,
   toilet,
+  type,
   className,
 }: {
   name: string;
+  slug: string;
   image: string;
   price: string;
   cars: number;
@@ -24,21 +27,23 @@ const Listing = ({
   size: string;
   location: string;
   toilet: number;
+  type: string;
   className?: string;
 }) => {
-  const imageBoxClass = `w-full h-[209px] bg-[url('/images/${image}')] bg-center bg-cover rounded-estate-border-radius-2 relative`;
+  const imageBoxClass = `w-full h-[209px]  bg-center bg-cover rounded-estate-border-radius-2 relative`;
   const router = useRouter();
   return (
     <div
-      onClick={() => router.push("/listings/1")}
+      onClick={() => router.push(`/listings/${slug}`)}
       className={cn(
         "bg-white shadow-features-shadow rounded-estate-border-radius-2 flex flex-col relative p-[10px] text-xs md:text-sm",
         className
       )}
     >
       <div className={imageBoxClass}>
+        <Image src={image} alt="image" fill />
         <div className="absolute top-5 right-5 bg-black/30 backdrop-blur-[2px] p-1 rounded-estate-border-radius-3 text-white text-xs font-medium">
-          Bungalow
+          {type || "Bungalow"}
         </div>
       </div>
       <p className="font-semibold mt-[10px]">{name}</p>

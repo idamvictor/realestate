@@ -12,10 +12,10 @@ import VerticalLine from "../VerticalLine";
 import CustomSelect from "../CustomSelect";
 
 const Locations = [
-  { title: "All Cities", value: "all citeis" },
+  { title: "All Cities", value: "all-cities" },
   { title: "Lagos", value: "lagos" },
   { title: "Abuja", value: "abuja" },
-  { title: "Port Harcourt", value: "ph" },
+  { title: "Port Harcourt", value: "portharcourt" },
 ];
 
 const LocationsSelect = () => {

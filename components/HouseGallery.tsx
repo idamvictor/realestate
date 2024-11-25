@@ -3,51 +3,92 @@ import React from "react";
 import FullSizeImage from "./FullSizeImage";
 import { CarouselSize } from "./Carousel";
 
+type HouseGalleryProps = {
+  className: string;
+  showControl: boolean;
+  images: string[] | undefined;
+};
+
 const HouseGallery = ({
   className,
   showControl,
-}: {
-  className: string;
-  showControl: boolean;
-}) => {
+  images,
+}: HouseGalleryProps) => {
+  // Default to an empty array if undefined
+  const normalizedImages = images || [];
+
   return (
     <CarouselSize
       showControl={showControl}
-      count="10"
-      items={[
-        <FullSizeImage
-          key={1}
-          imgSrc="bg-[url('/images/horizontal-house.jpg')]"
-          className={cn(className)}
-        />,
-        <FullSizeImage
-          key={1}
-          imgSrc="bg-[url('/images/horizontal-house.jpg')]"
-          className={cn(className)}
-        />,
-        <FullSizeImage
-          key={1}
-          imgSrc="bg-[url('/images/horizontal-house.jpg')]"
-          className={cn(className)}
-        />,
-        <FullSizeImage
-          key={1}
-          imgSrc="bg-[url('/images/horizontal-house.jpg')]"
-          className={cn(className)}
-        />,
-        <FullSizeImage
-          key={1}
-          imgSrc="bg-[url('/images/horizontal-house.jpg')]"
-          className={cn(className)}
-        />,
-        <FullSizeImage
-          key={1}
-          imgSrc="bg-[url('/images/horizontal-house.jpg')]"
-          className={cn(className)}
-        />,
-      ]}
+      count={(images?.length || 1).toString()}
+      items={
+        normalizedImages?.map((image, index) => (
+          <FullSizeImage key={index} imgSrc={image} className={cn(className)} />
+        )) || []
+      }
     />
   );
 };
 
 export default HouseGallery;
+
+// const HouseGallery = ({
+//   className,
+//   showControl,
+//   images,
+// }: {
+//   className: string;
+//   showControl: boolean;
+//   images: string[];
+// }) => {
+//   return (
+//     <CarouselSize
+//       showControl={showControl}
+//       count={"10"}
+//       items={[
+//         images?.map((images, index) => (
+//           <FullSizeImage
+//             key={index}
+//             imgSrc={`${images}`}
+//             className={cn(className)}
+//           />
+//         )),
+//       ]}
+//     />
+//   );
+// };
+
+// export default HouseGallery;
+
+// [
+//   <FullSizeImage
+//     key={1}
+//     imgSrc="bg-[url('/images/horizontal-house.jpg')]"
+//     className={cn(className)}
+//   />,
+//   <FullSizeImage
+//     key={1}
+//     imgSrc="bg-[url('/images/horizontal-house.jpg')]"
+//     className={cn(className)}
+//   />,
+//   <FullSizeImage
+//     key={1}
+//     imgSrc="bg-[url('/images/horizontal-house.jpg')]"
+//     className={cn(className)}
+//   />,
+//   <FullSizeImage
+//     key={1}
+//     imgSrc="bg-[url('/images/horizontal-house.jpg')]"
+//     className={cn(className)}
+//   />,
+//   <FullSizeImage
+//     key={1}
+//     imgSrc="bg-[url('/images/horizontal-house.jpg')]"
+//     className={cn(className)}
+//   />,
+//   <FullSizeImage
+//     key={1}
+//     imgSrc="bg-[url('/images/horizontal-house.jpg')]"
+//     className={cn(className)}
+//   />,
+// ]

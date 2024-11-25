@@ -1,82 +1,35 @@
 import React from "react";
 import Listing from "./Listing";
 import { CarouselSize } from "./Carousel";
+import { useListings } from "@/context/ListingContext";
 
 const Listings = () => {
+  const { listings, loading, error } = useListings();
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <div className="w-full flex justify-center mt-5">
       <CarouselSize
         showControl={true}
         className=""
         count="3"
-        items={[
+        items={listings.map((listing, index) => (
           <Listing
-            key={1}
-            beds={2}
-            cars={2}
-            image="vertical-house.jpg"
-            location="Wuse Phase 1, Abuja"
-            name="Major General Realty"
-            price="$50,000"
+            key={index}
+            slug={listing.slug}
+            beds={listing.beds}
+            cars={listing.car_packs}
+            image={listing.image}
+            location={listing.city}
+            name={listing.title}
+            price={listing.price}
             size="2,547sqft"
-            toilet={2}
-          />,
-          <Listing
-            key={2}
-            beds={2}
-            cars={2}
-            image="vertical-house.jpg"
-            location="Wuse Phase 1, Abuja"
-            name="Major General Realty"
-            price="$50,000"
-            size="2,547sqft"
-            toilet={2}
-          />,
-          <Listing
-            key={3}
-            beds={2}
-            cars={2}
-            image="vertical-house.jpg"
-            location="Wuse Phase 1, Abuja"
-            name="Major General Realty"
-            price="$50,000"
-            size="2,547sqft"
-            toilet={2}
-          />,
-          <Listing
-            key={4}
-            beds={2}
-            cars={2}
-            image="vertical-house.jpg"
-            location="Wuse Phase 1, Abuja"
-            name="Major General Realty"
-            price="$50,000"
-            size="2,547sqft"
-            toilet={2}
-          />,
-          <Listing
-            key={5}
-            beds={2}
-            cars={2}
-            image="vertical-house.jpg"
-            location="Wuse Phase 1, Abuja"
-            name="Major General Realty"
-            price="$50,000"
-            size="2,547sqft"
-            toilet={2}
-          />,
-          <Listing
-            key={6}
-            beds={2}
-            cars={2}
-            image="vertical-house.jpg"
-            location="Wuse Phase 1, Abuja"
-            name="Major General Realty"
-            price="$50,000"
-            size="2,547sqft"
-            toilet={2}
-          />,
-        ]}
+            toilet={listing.toilets}
+            type={listing.type}
+          />
+        ))}
       />
     </div>
   );

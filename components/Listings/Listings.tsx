@@ -1,14 +1,28 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import React, { useEffect } from "react";
 import SectionWrapper from "../SectionWrapper";
 import Listing from "../Listing";
 import Filter from "./Filter";
 import { cn } from "@/lib/utils";
-import { FilterContext, useFilterContext } from "@/context";
+import { useFilterContext } from "@/context/index";
+import { useListings } from "@/context/ListingContext";
+import useFetchWithParams from "@/services/useFIlterApi";
 
-const Listings = () => {
+const Listings: React.FC = () => {
   const { openFilter } = useFilterContext();
+
+  const { listings, loading, error } = useListings();
+  const { fetchWithParams } = useFetchWithParams();
+
+  useEffect(() => {
+    // Initial fetch
+    fetchWithParams();
+  }, [fetchWithParams]);
+
+  // console.log("Data after rendering:", listings);
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <SectionWrapper className="grid grid-cols-1 md:grid-cols-12 md:gap-10 lg:gap-[60px] relative my-5">
       <div
@@ -21,224 +35,43 @@ const Listings = () => {
       >
         <Filter />
       </div>
-      <div className="grid-span-1 md:col-start-7 md:col-span-9 lg:col-start-5 justify-center lg:col-span-8 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5">
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full  col-span-1"
-        />
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />{" "}
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />{" "}
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />{" "}
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />{" "}
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />{" "}
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />{" "}
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />{" "}
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />{" "}
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />{" "}
-        <Listing
-          key={1}
-          beds={2}
-          cars={2}
-          image="vertical-house.jpg"
-          location="Wuse Phase 1, Abuja"
-          name="Major General Realty"
-          price="$50,000"
-          size="2,547sqft"
-          toilet={2}
-          className="w-full md:w-full col-span-1"
-        />
-      </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="grid-span-1 md:col-start-7 md:col-span-9 lg:col-start-5 justify-center lg:col-span-8 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5">
+          {listings?.map(
+            (
+              listing: {
+                slug: string;
+                beds: number;
+                car_packs: number;
+                image: string;
+                city: string;
+                title: string;
+                price: string;
+                toilets: number;
+                type: string;
+              },
+              index: React.Key | null | undefined
+            ) => (
+              <Listing
+                key={index}
+                slug={listing.slug}
+                beds={listing.beds}
+                cars={listing.car_packs}
+                image={listing.image}
+                location={listing.city}
+                name={listing.title}
+                price={listing.price}
+                size="2,547sqft" // Assuming size isn't provided, you can update this
+                toilet={listing.toilets}
+                type={listing.type}
+                className="w-full md:w-full col-span-1"
+              />
+            )
+          )}
+        </div>
+      )}
     </SectionWrapper>
   );
 };

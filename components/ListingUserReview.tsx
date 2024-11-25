@@ -5,6 +5,8 @@ import HouseGallery from "./HouseGallery";
 import Icon from "./Icon";
 import Ratings from "./Ratings";
 
+// images={[""]}
+
 const ListingUserReview = () => {
   return (
     <div>
@@ -25,6 +27,7 @@ const ListingUserReview = () => {
       </ParagraphRegular>
       <div className="flex items-center gap-[10px] mt-[32px] md:mt-10">
         <HouseGallery
+          images={[]}
           showControl={false}
           className="w-[111px] h-[90px] rounded-estate-border-radius"
         />
