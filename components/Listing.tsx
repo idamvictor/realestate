@@ -49,10 +49,10 @@ const Listing = ({
         >
           <div className={imageBoxClass}>
             {/* image skeleton */}
-            <Skeleton className="w-[357px] h-[208px]" />
-            <div className="absolute top-5 right-5 bg-black/30 backdrop-blur-[2px] p-1 rounded-estate-border-radius-3 text-white text-xs font-medium">
+            <Skeleton className="w-[100%] h-[208px]" />
+            {/* <div className="absolute top-5 right-5 bg-black/30 backdrop-blur-[2px] p-1 rounded-estate-border-radius-3 text-white text-xs font-medium">
               {type || "Bungalow"}
-            </div>
+            </div> */}
           </div>
           {/* name skeleton */}
           <Skeleton className="w-[300px] h-[20px]" />
