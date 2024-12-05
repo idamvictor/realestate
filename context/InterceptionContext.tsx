@@ -24,6 +24,9 @@ interface ListingContextProps {
   loading: boolean;
   error: string | null;
   fetchNextPage: () => void;
+  // Add these two properties to track pagination
+  currentPage: number; // New property to track current page
+  totalPages: number; // New property to track total pages
   hasNextPage: boolean | undefined;
   isFetchingNextPage: boolean;
   fetchListings: (queryParams?: string) => void;
@@ -70,6 +73,9 @@ export const InterceptionContext: React.FC<{ children: React.ReactNode }> = ({
     return {
       data: jsonData.data,
       nextPage: jsonData.meta.current_page ? pageParam + 1 : undefined,
+      // Explicitly add these properties with their types
+      currentPage: jsonData.meta.current_page as number,
+      totalPages: jsonData.meta.last_page as number,
     };
   };
 
@@ -101,6 +107,10 @@ export const InterceptionContext: React.FC<{ children: React.ReactNode }> = ({
   // Flatten listings from all pages
   const listingData = data?.pages.flatMap((page) => page.data);
 
+  // Get the current page and total pages from the last page of data
+  const currentPage = data?.pages[data.pages.length - 1]?.currentPage || 1;
+  const totalPages = data?.pages[data.pages.length - 1]?.totalPages || 1;
+
   return (
     <InterceptContext.Provider
       value={{
@@ -108,6 +118,9 @@ export const InterceptionContext: React.FC<{ children: React.ReactNode }> = ({
         loading: isFetching,
         error: isError ? error?.message : null,
         fetchNextPage,
+        // Add current page and total pages to the context value
+        currentPage,
+        totalPages,
         hasNextPage,
         isFetchingNextPage,
         fetchListings: fetchListingsManual,
