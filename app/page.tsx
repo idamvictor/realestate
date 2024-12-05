@@ -9,7 +9,6 @@ import RightSellingOption from "@/components/RightSellingOption";
 import { Button } from "@/components/ui/button";
 import UserReviews from "@/components/UserReviews";
 import WelcomeSection from "@/components/WelcomeSection";
-// import { ListingProvider } from "@/context/ListingContext";
 import { Suspense } from "react";
 
 export default function Home() {

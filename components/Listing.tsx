@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import VerticalLine from "./VerticalLine";
 import Icon from "./Icon";
 import { useRouter } from "next/navigation";
-import { useListings } from "@/context/ListingContext";
 import { Skeleton } from "./ui/skeleton";
+import { useInterceptingListing } from "@/context/InterceptionContext";
 
 const Listing = ({
   name,
@@ -19,7 +19,8 @@ const Listing = ({
   toilet,
   type,
   className,
-}: {
+}: // loading,
+{
   name: string;
   slug: string;
   image: string;
@@ -31,11 +32,14 @@ const Listing = ({
   toilet: number;
   type: string;
   className?: string;
+  // loading: boolean;
 }) => {
   const imageBoxClass = `w-full h-[209px]  bg-center bg-cover rounded-estate-border-radius-2 relative`;
   const router = useRouter();
 
-  const { loading } = useListings();
+  // const { loading } = useInterceptingListing();
+  // console.log(loading);
+  const loading = false;
 
   return (
     <>
