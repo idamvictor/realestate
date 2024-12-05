@@ -122,7 +122,6 @@ interface ListingContextProps {
   listings: Listing[] | undefined;
   loading: boolean;
   error: string | null;
-  fetchListings: (queryParams?: string) => void; // The queryParams is optional
 }
 
 const ListingContext = createContext<ListingContextProps | undefined>(
@@ -143,8 +142,8 @@ export const ListingProvider: React.FC<{ children: React.ReactNode }> = ({
   const BASE_API_URL = "https://realestate.surdonline.com/api/v1/listings";
 
   // Function to fetch listings
-  const fetchListings = async (queryParams: string = "") => {
-    const url = `${BASE_API_URL}${queryParams ? `?${queryParams}` : ""}`;
+  const fetchListings = async () => {
+    const url = `${BASE_API_URL}`;
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -153,25 +152,15 @@ export const ListingProvider: React.FC<{ children: React.ReactNode }> = ({
     return jsonData.data;
   };
 
-  // State for query parameters (can be updated dynamically)
-  const [queryParams, setQueryParams] = React.useState<string>("");
-
   const {
     data: listings,
     isLoading,
     isError,
     error,
   } = useQuery({
-    queryKey: ["listings", queryParams], // Unique key for caching the query
-    queryFn: () => fetchListings(queryParams),
-    enabled: true, // Only run the query when queryParams is not empty
+    queryKey: ["listings"], // Unique key for caching the query
+    queryFn: fetchListings,
   });
-
-  // Manual fetch function that accepts queryParams as string | undefined
-  const fetchListingsManual = (newQueryParams?: string) => {
-    // If newQueryParams is undefined, we will set it to an empty string
-    setQueryParams(newQueryParams ?? ""); // Default to empty string if undefined
-  };
 
   return (
     <ListingContext.Provider
@@ -179,7 +168,6 @@ export const ListingProvider: React.FC<{ children: React.ReactNode }> = ({
         listings,
         loading: isLoading,
         error: isError ? error?.message : null,
-        fetchListings: fetchListingsManual, // Provide the manual fetch function
       }}
     >
       {children}

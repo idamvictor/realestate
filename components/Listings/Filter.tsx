@@ -16,12 +16,13 @@ import RadioSelect from "./RadioSelect";
 import CheckboxGroup from "./CheckBoxGroup";
 import { useSearchParams } from "next/navigation";
 import { useListings } from "@/context/ListingContext";
+import { useInterceptingListing } from "@/context/InterceptionContext";
 // import useFetchWithParams from "@/services/useFIlterApi";
 
 const Filter = () => {
   // const { toggleFilter } = useFilterContext();
 
-  const { loading, fetchListings } = useListings();
+  const { fetchListings: newFetchListing, loading } = useInterceptingListing();
 
   const searchParams = useSearchParams();
   const paramsObject = Object.fromEntries(searchParams.entries());
@@ -40,7 +41,8 @@ const Filter = () => {
     if (length === 0) return;
 
     // fetchListings(queryParams);
-    fetchListings(queryParams);
+    // fetchListings(queryParams);
+    newFetchListing(queryParams);
   };
 
   const clearAllState = () => {
@@ -49,7 +51,7 @@ const Filter = () => {
 
     //re-fetch the initial listting when we clear the filter
 
-    fetchListings();
+    newFetchListing();
   };
 
   return (

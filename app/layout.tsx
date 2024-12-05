@@ -4,6 +4,7 @@ import "./globals.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ListingProvider } from "@/context/ListingContext";
 import QueryProvider from "@/context/QueryProvider";
+import { InterceptionContext } from "@/context/InterceptionContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <QueryProvider>
-          <ListingProvider>{children}</ListingProvider>
+          <ListingProvider>
+            <InterceptionContext>{children}</InterceptionContext>
+          </ListingProvider>
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryProvider>
       </body>
