@@ -1,9 +1,9 @@
-"use client";
+// "use client";
 
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Label } from "@/components/ui/label";
 import FilterSectionTitle from "./FilterSectionTitle";
-import CheckboxOption from "./CheckboxOption";
+// import CheckboxOption from "./CheckboxOption";
 import RangeSlider from "../RangeSlider";
 import ItemsAmountSelect from "./ItemsAmountSelect";
 import LocationsSelect from "./LocationsSelect";
@@ -11,34 +11,36 @@ import SquareFeetInputs from "./SquareFeetInputs";
 import YearBuiltInputs from "./YearBuiltInputs";
 import OtherFeatures from "./OtherFeatures";
 import { Button } from "../ui/button";
-import Image from "next/image";
 import { useFilterContext } from "@/context";
 import RadioSelect from "./RadioSelect";
 import CheckboxGroup from "./CheckBoxGroup";
-import useSearchParamHandler from "@/hooks/useSearchParamsHandler";
 import { useSearchParams } from "next/navigation";
-// import useFetchWithParams from "@/services/useFIlterApi";
 import { useListings } from "@/context/ListingContext";
+// import useFetchWithParams from "@/services/useFIlterApi";
 
 const Filter = () => {
   // const { toggleFilter } = useFilterContext();
-  const { fetchWithParams, loading } = useListings();
+
+  const { loading, fetchListings } = useListings();
 
   const searchParams = useSearchParams();
   const paramsObject = Object.fromEntries(searchParams.entries());
   const { type, all, bathroom, bedroom, max_price, min_price, cities } =
     paramsObject;
 
-  const newType = encodeURIComponent(type);
+  const newType = type ? encodeURIComponent(type) : "";
 
   const length = Object.values(paramsObject).length;
 
-  const queryParams = `type=${newType}&city=${cities}&min_price=${min_price}&max_price=${max_price}&bedrooms=&toilets=&keyword=&sort_by=`;
+  const queryParams = `type=${newType}&city=${cities || ""}&min_price=${
+    min_price || ""
+  }&max_price=${max_price || ""}&bedrooms=&toilets=&keyword=&sort_by=`;
 
   const handleSubmit = () => {
     if (length === 0) return;
 
-    fetchWithParams(queryParams);
+    // fetchListings(queryParams);
+    fetchListings(queryParams);
   };
 
   const clearAllState = () => {
@@ -46,7 +48,8 @@ const Filter = () => {
     window.history.pushState(null, "", window.location.pathname);
 
     //re-fetch the initial listting when we clear the filter
-    fetchWithParams();
+
+    fetchListings();
   };
 
   return (

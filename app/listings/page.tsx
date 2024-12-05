@@ -4,7 +4,7 @@ import Listings from "@/components/Listings/Listings";
 import SearchListings from "@/components/Listings/SearchListings";
 import Navbar from "@/components/Navbar";
 import { FilterContext } from "@/context";
-import { useListings } from "@/context/ListingContext";
+// import { useListings } from "@/context/ListingContext";
 import React, { Suspense, useState } from "react";
 
 const ListingsPage = () => {

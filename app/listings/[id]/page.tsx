@@ -31,6 +31,7 @@ import SectionHeader from "@/components/SectionHeader";
 import Listings from "@/components/Listings";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useQuery } from "@tanstack/react-query";
 
 interface PropertyDetails {
   title: string;
@@ -74,40 +75,30 @@ const ListingDetailPage = ({
   const { id } = params;
 
   const [houseInspectionType, setHouseInspectionType] = useState("in-person");
-  const [details, setDetail] = useState<PropertyDetails | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // console.log(details?.image);
+  const { data, isLoading, error } = useQuery<ApiResponse, Error>({
+    queryKey: ["productId", id],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://realestate.surdonline.com/api/v1/listing/${id}`
+      );
+      if (!res.ok) {
+        throw new Error(`Error fetching data: ${res.statusText}`);
+      }
+      const data: ApiResponse = await res.json();
+
+      return data;
+    },
+  });
 
   const {
-    title,
-    image,
-    images,
+    title = "No title available",
+    image = "",
+    images = [],
     price = "N/A",
     description = "No description available",
     amenities = [],
-  } = details || {};
-
-  // console.log(image);
-
-  useEffect(() => {
-    const getProductDetails = async () => {
-      try {
-        setIsLoading(true);
-        const res = await fetch(
-          `https://realestate.surdonline.com/api/v1/listing/${id}`
-        );
-        const data: ApiResponse = await res.json(); // Assume the API returns a single object
-        setDetail(data.data);
-      } catch (error) {
-        console.error("Failed to fetch data", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getProductDetails();
-  }, [id]);
+  } = data?.data || {};
 
   return (
     <div>
