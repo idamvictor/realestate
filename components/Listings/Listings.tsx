@@ -34,43 +34,40 @@
 //       >
 //         <Filter />
 //       </div>
-//       {loading ? (
-//         <p>Loadingggg...</p>
-//       ) : (
-//         <div className="grid-span-1 md:col-start-7 md:col-span-9 lg:col-start-5 justify-center lg:col-span-8 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5">
-//           {listings?.map(
-//             (
-//               listing: {
-//                 slug: string;
-//                 beds: number;
-//                 car_packs: number;
-//                 image: string;
-//                 city: string;
-//                 title: string;
-//                 price: string;
-//                 toilets: number;
-//                 type: string;
-//               },
-//               index: React.Key | null | undefined
-//             ) => (
-//               <Listing
-//                 key={index}
-//                 slug={listing.slug}
-//                 beds={listing.beds}
-//                 cars={listing.car_packs}
-//                 image={listing.image}
-//                 location={listing.city}
-//                 name={listing.title}
-//                 price={listing.price}
-//                 size="2,547sqft" // Assuming size isn't provided, you can update this
-//                 toilet={listing.toilets}
-//                 type={listing.type}
-//                 className="w-full md:w-full col-span-1"
-//               />
-//             )
-//           )}
-//         </div>
-//       )}
+
+//       <div className="grid-span-1 md:col-start-7 md:col-span-9 lg:col-start-5 justify-center lg:col-span-8 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5">
+//         {listings?.map(
+//           (
+//             listing: {
+//               slug: string;
+//               beds: number;
+//               car_packs: number;
+//               image: string;
+//               city: string;
+//               title: string;
+//               price: string;
+//               toilets: number;
+//               type: string;
+//             },
+//             index: React.Key | null | undefined
+//           ) => (
+//             <Listing
+//               key={index}
+//               slug={listing.slug}
+//               beds={listing.beds}
+//               cars={listing.car_packs}
+//               image={listing.image}
+//               location={listing.city}
+//               name={listing.title}
+//               price={listing.price}
+//               size="2,547sqft" // Assuming size isn't provided, you can update this
+//               toilet={listing.toilets}
+//               type={listing.type}
+//               className="w-full md:w-full col-span-1"
+//             />
+//           )
+//         )}
+//       </div>
 //     </SectionWrapper>
 //   );
 // };
@@ -85,20 +82,29 @@ import Listing from "../Listing";
 import Filter from "./Filter";
 import { cn } from "@/lib/utils";
 import { useFilterContext } from "@/context/index";
-import { useListings } from "@/context/ListingContext";
 // import useFetchWithParams from "@/services/useFIlterApi";
+// import { useQuery } from "@tanstack/react-query";
+import { useListings } from "@/context/ListingContext";
+
+// const BASE_API_URL = "https://realestate.surdonline.com/api/v1/listings";
 
 const Listings: React.FC = () => {
   const { openFilter } = useFilterContext();
 
-  const { listings, loading, error, fetchWithParams } = useListings();
+  const { listings, loading, error } = useListings();
 
-  useEffect(() => {
-    // Initial fetch
-    fetchWithParams();
-  }, [fetchWithParams]);
+  // const { data, isLoading, isError, error } = useQuery({
+  //   queryKey: ["listings"], // Unique key for caching the query
+  //   queryFn: async () => {
+  //     const response = await fetch(BASE_API_URL);
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+  //     const data = await response.json();
+  //     return data.data; // Return the JSON response
+  //   },
+  // });
 
-  // console.log("Data after rendering:", listings);
   if (error) return <p>Error: {error}</p>;
 
   return (

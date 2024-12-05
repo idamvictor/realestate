@@ -2,12 +2,13 @@ import React from "react";
 import Listing from "./Listing";
 import { CarouselSize } from "./Carousel";
 import { useListings } from "@/context/ListingContext";
+// import { any } from "zod";
 
 const Listings = () => {
   const { listings, loading, error } = useListings();
 
   // if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  // if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="w-full flex justify-center mt-5">
@@ -16,21 +17,23 @@ const Listings = () => {
         showControl={true}
         className=""
         count="3"
-        items={listings.map((listing, index) => (
-          <Listing
-            key={index}
-            slug={listing.slug}
-            beds={listing.beds}
-            cars={listing.car_packs}
-            image={listing.image}
-            location={listing.city}
-            name={listing.title}
-            price={listing.price}
-            size="2,547sqft"
-            toilet={listing.toilets}
-            type={listing.type}
-          />
-        ))}
+        items={
+          listings?.map((listing, index) => (
+            <Listing
+              key={index}
+              slug={listing.slug}
+              beds={listing.beds}
+              cars={listing.car_packs}
+              image={listing.image}
+              location={listing.city}
+              name={listing.title}
+              price={listing.price}
+              size="2,547sqft"
+              toilet={listing.toilets}
+              type={listing.type}
+            />
+          )) ?? []
+        }
       />
     </div>
   );
