@@ -105,7 +105,15 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ options, paramKey }) => {
   const handleCheckboxChange = (id: string, checked: boolean) => {
     if (checked) {
       setCheckboxValues({ ...initialCheckboxValues, [id]: true });
-      setParam(paramKey, id); // Pass raw ID
+
+      // We Check for all and if it exist we set it to an empty string and pass to the params
+      let newId = id;
+      if (id === "All") {
+        newId = "";
+        setParam(paramKey, newId);
+      } else {
+        setParam(paramKey, id); // Pass raw ID
+      }
     } else {
       setCheckboxValues(initialCheckboxValues);
       setParam(paramKey, "");

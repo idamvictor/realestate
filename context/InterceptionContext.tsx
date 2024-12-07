@@ -22,6 +22,7 @@ export interface Listing {
 interface ListingContextProps {
   listingData: Listing[] | undefined;
   loading: boolean;
+  fetching: boolean;
   error: string | null;
   fetchNextPage: () => void;
   // Add these two properties to track pagination
@@ -88,6 +89,7 @@ export const InterceptionContext: React.FC<{ children: React.ReactNode }> = ({
     hasNextPage,
     isFetchingNextPage,
     isFetching,
+    isLoading,
     isError,
     error,
   } = useInfiniteQuery({
@@ -115,7 +117,8 @@ export const InterceptionContext: React.FC<{ children: React.ReactNode }> = ({
     <InterceptContext.Provider
       value={{
         listingData,
-        loading: isFetching,
+        loading: isLoading,
+        fetching: isFetching,
         error: isError ? error?.message : null,
         fetchNextPage,
         // Add current page and total pages to the context value
