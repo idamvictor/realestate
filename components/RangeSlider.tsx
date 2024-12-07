@@ -192,7 +192,7 @@ const RangeSlider = ({ className, ...props }: { className?: string }) => {
     [setParam]
   );
 
-  const setMin = (e: ChangeEvent<HTMLInputElement>) => {
+  const setMin = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const value = Number(e.target.value);
 
@@ -220,7 +220,7 @@ const RangeSlider = ({ className, ...props }: { className?: string }) => {
           className="range-slider w-full absolute left-0 z-50"
           min={10000}
           max={10000000}
-          onChange={(e) => setMin(e)}
+          onChange={setMin}
           value={minRange}
         />
 
