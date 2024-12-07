@@ -63,7 +63,16 @@ const ItemsAmountSelect: React.FC<ItemsAmountSelectProps> = ({
   const setAsActiveIndex = (index: number) => {
     const value = options[index].replace("+", "");
     const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set(paramKey, value);
+    let newValue = value;
+
+    //Setting the params to empty string when it is equall to any
+    if (value === "any") {
+      newValue = "";
+      newSearchParams.set(paramKey, newValue);
+    } else {
+      newSearchParams.set(paramKey, value);
+    }
+
     router.push(`?${newSearchParams.toString()}`);
   };
 

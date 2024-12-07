@@ -93,6 +93,8 @@ import { useFilterContext } from "@/context/index";
 import { useInView } from "react-intersection-observer";
 import { useInterceptingListing } from "@/context/InterceptionContext";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { Skeleton } from "../ui/skeleton";
+import ListingSkeleton from "../ListingSkeleton";
 
 const Listings: React.FC = () => {
   const { openFilter } = useFilterContext();
@@ -129,6 +131,10 @@ const Listings: React.FC = () => {
       </div>
 
       <div className="grid-span-1 md:col-start-7 md:col-span-9 lg:col-start-5 justify-center lg:col-span-8 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5">
+        {loading &&
+          Array.from({ length: 6 }, (_, index) => index + 1).map((i) => (
+            <ListingSkeleton key={i} />
+          ))}
         {listingData?.map(
           (
             listing: {
