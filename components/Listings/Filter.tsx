@@ -1,6 +1,6 @@
-// "use client";
+"use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import FilterSectionTitle from "./FilterSectionTitle";
 // import CheckboxOption from "./CheckboxOption";
@@ -35,7 +35,13 @@ const Filter = () => {
 
   const queryParams = `type=${newType}&city=${cities || ""}&min_price=${
     min_price || ""
-  }&max_price=${max_price || ""}&bedrooms=&toilets=&keyword=&sort_by=`;
+  }&max_price=${max_price || ""}&bedrooms=${bedroom || ""}&toilets=${
+    bathroom || ""
+  }&keyword=&sort_by=`;
+
+  useEffect(() => {
+    newFetchListing(queryParams);
+  }, [newFetchListing, queryParams]);
 
   const handleSubmit = () => {
     if (length === 0) return;
