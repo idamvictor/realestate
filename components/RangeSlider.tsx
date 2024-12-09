@@ -229,7 +229,7 @@ const RangeSlider = ({ className, ...props }: { className?: string }) => {
           className="range-slider w-full absolute right-0 z-50"
           min={10000}
           max={10000000}
-          onChange={(e) => setMax(e)}
+          onChange={setMax}
           value={maxRange}
         />
       </div>

@@ -4,9 +4,7 @@ import React, { useEffect } from "react";
 import VerticalLine from "./VerticalLine";
 import Icon from "./Icon";
 import { useRouter } from "next/navigation";
-import { Skeleton } from "./ui/skeleton";
 import { useInterceptingListing } from "@/context/InterceptionContext";
-import ListingSkeleton from "./ListingSkeleton";
 
 const Listing = ({
   name,
@@ -59,7 +57,7 @@ const Listing = ({
         </div>
         <p className="font-semibold mt-[10px]">{name}</p>
         <div className="flex items-center gap-2 md:gap-5 mt-2 flex-wrap">
-          <p className="font-semibold text-sm">{price}</p>
+          <p className="font-semibold text-sm">${price}</p>
           <VerticalLine height={23} color="black" />
           <Icon image="/icons/bed.svg" text={String(beds)} />
           <Icon image="/icons/bath.svg" text={String(toilet)} />
