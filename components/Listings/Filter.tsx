@@ -26,8 +26,16 @@ const Filter = () => {
 
   const searchParams = useSearchParams();
   const paramsObject = Object.fromEntries(searchParams.entries());
-  const { type, all, bathroom, bedroom, max_price, min_price, cities } =
-    paramsObject;
+  const {
+    type,
+    all,
+    bathroom,
+    bedroom,
+    max_price,
+    min_price,
+    cities,
+    keyword,
+  } = paramsObject;
 
   const newType = type ? encodeURIComponent(type) : "";
 
@@ -37,7 +45,7 @@ const Filter = () => {
     min_price || ""
   }&max_price=${max_price || ""}&bedrooms=${bedroom || ""}&toilets=${
     bathroom || ""
-  }&keyword=&sort_by=`;
+  }&keyword=${keyword || ""}&sort_by=`;
 
   useEffect(() => {
     newFetchListing(queryParams);

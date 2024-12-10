@@ -8,10 +8,23 @@ import { Button } from "./ui/button";
 import BlurContainer from "./BlurContainer";
 import Blur from "./Blur";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 interface SearchRealEstateProps extends HTMLAttributes<HTMLDivElement> {}
 
 const SearchRealEstate = forwardRef<HTMLDivElement, SearchRealEstateProps>(
   (props, ref) => {
+    const [query, setQuery] = useState("");
+    const router = useRouter();
+
+    const handleSearch = () => {
+      // Redirect to listings page with search query
+      router.push(`/listings?keyword=${encodeURIComponent(query)}`);
+
+      console.log(query);
+    };
+
     return (
       <div {...props} ref={ref}>
         <Blur className="block lg:hidden -top-10" />
@@ -40,6 +53,8 @@ const SearchRealEstate = forwardRef<HTMLDivElement, SearchRealEstateProps>(
                 <Input
                   placeholder="Search keywords"
                   className="border-none w-[120px] lg:w-full h-10"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
                 />
               </div>
 
@@ -58,7 +73,9 @@ const SearchRealEstate = forwardRef<HTMLDivElement, SearchRealEstateProps>(
                 </Button>
               </div>
             </div>
-            <Button className="w-[20%]">Search</Button>
+            <Button onClick={handleSearch} className="w-[20%]">
+              Search
+            </Button>
           </div>
         </BlurContainer>
       </div>
