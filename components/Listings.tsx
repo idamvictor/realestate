@@ -2,13 +2,9 @@ import React from "react";
 import Listing from "./Listing";
 import { CarouselSize } from "./Carousel";
 import { useListings } from "@/context/ListingContext";
-// import { any } from "zod";
 
 const Listings = () => {
   const { listings, loading, error } = useListings();
-
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="w-full flex justify-center mt-5">

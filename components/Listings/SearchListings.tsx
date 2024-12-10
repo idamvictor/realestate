@@ -1,5 +1,8 @@
 import Image from "next/image";
 import React, { useContext } from "react";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
+
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import SectionWrapper from "../SectionWrapper";
@@ -17,6 +20,20 @@ import { FilterContext, useFilterContext } from "@/context";
 
 const SearchListings = () => {
   const { toggleFilter, openFilter } = useFilterContext();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  const handleSearch = useDebouncedCallback((term: string) => {
+    const params = new URLSearchParams(searchParams);
+    console.log(params);
+    if (term) {
+      params.set("keyword", term);
+    } else {
+      params.delete("keyword");
+    }
+    replace(`${pathname}?${params.toString()}`);
+  }, 500);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 px-5 border border-grey-1 md:px-10 md:py-5 sticky top-[72px] lg:top-[80px] z-50 bg-white h-[130px] md:h-[97px] pt-2">
@@ -52,6 +69,10 @@ const SearchListings = () => {
           <Input
             className="border-none w-[80%] placeholder:text-estate-grey-2 placeholder:text-xs md:placeholder:text-sm bg-transparent"
             placeholder="What are you looking for?"
+            defaultValue={searchParams.get("keyword")?.toString()}
+            onChange={(e) => {
+              handleSearch(e.target.value);
+            }}
           />
         </div>
         <Button className="rounded-[26px] col-span-2 hidden md:block ml-[10px] text-sm w-[119px]">
