@@ -19,7 +19,9 @@ const ListingsPage = () => {
         value={{ openFilter, setOpenFilter, toggleFilter }}
       >
         <Navbar activeLink="listings" />
-        <SearchListings />
+        <Suspense fallback={<div>Loading...</div>}>
+          <SearchListings />
+        </Suspense>
         <Suspense fallback={<div>Loading...</div>}>
           <Listings />
         </Suspense>
