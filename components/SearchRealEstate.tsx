@@ -30,13 +30,13 @@ const SearchRealEstate = forwardRef<HTMLDivElement, SearchRealEstateProps>(
         <Blur className="block lg:hidden -top-10" />
         <BlurContainer className="w-auto mx-5 lg:w-[50%] shadow-search-shadow">
           <ul className="flex space-x-[85px] font-medium opacity-100">
-            <NavbarItem activeLink={true} link="/buy">
+            <NavbarItem activeLink={true} link="/listings?sale_status=bid">
               Buy
             </NavbarItem>
-            <NavbarItem activeLink={false} link="/rent">
+            <NavbarItem activeLink={false} link="/listings?sale_status=rent">
               Rent
             </NavbarItem>
-            <NavbarItem activeLink={false} link="/sold">
+            <NavbarItem activeLink={false} link="/listings?sale_status=sale">
               Sold
             </NavbarItem>
           </ul>
